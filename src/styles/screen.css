@@ -1,3 +1,4 @@
+@use 'reset';
 header,
 footer {
   background: #000;
@@ -6,4 +7,28 @@ footer {
 
 .btn {
   background: lightgreen;
+}
+
+img {
+  max-width: 100%;
+  grid-row: 1 / span 2;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: .5rem;
+}
+
+.intro__login {
+  background: url("/img/login.jpg") center center/cover;
+}
+
+.intro__toPost {
+  background: url("/img/toPostsBg.jpg") center center/cover;
+}
+
+.error {
+  color: red;
 }
