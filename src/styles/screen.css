@@ -32,3 +32,15 @@ img {
 .error {
   color: red;
 }
+
+.blogpost {
+  border: 2px solid lightseagreen;
+}
+
+.comment-icon {
+  max-width: 1.5rem;
+}
+
+aside {
+  border: 1px solid #000;
+}

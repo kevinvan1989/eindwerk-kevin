@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Formgroup from "./Formgroup";
+import { API } from "../libs/API";
+import { getUser } from "../redux/actions/authActions"
+import {connect} from "react-redux"
 
-class Login extends Component {
+
+class Login extends Component {  
+
   clearInput = () => {
     const inputEl = document.querySelectorAll(".inputField");
     inputEl.forEach((el) => {
@@ -12,64 +18,71 @@ class Login extends Component {
   };
 
   handleLogin = (values) => {
-    console.log(values);
-    this.clearInput();
-  };
+    console.log('values', values.LOGIN_email)
 
-  validateForm = (values) => {
-    console.log(values);
+    API.post('oauth/token', {
+            'grant_type': 'password',
+            'client_id': 2,
+            'client_secret': 'iwrHFPcaiQ3bZTzHEwQpYkpiuHUlbIOJ9SAI6DLI',
+            "username": values.LOGIN_email,
+            "password": values.LOGIN_password
+    }).then(response => {
+      window.localStorage.setItem('_DEMO_TOKEN', response.data.access_token)
+      console.log('post',response.data.access_token)
+
+      // Object.assign(API.defaults, {
+      //   headers: { authorization: 'Bearer' + response.data.access_token}
+      // })
+
+      API.defaults.headers.common["Authorization"] =
+          "Bearer " + response.data.access_token;
+          
+      API.get("/api/posts").then((response) => {
+        console.log(response);
+      });
+
+      // De header wordt ingesteld hierboven. Daarna kunnen de gegevens worden opgehaald
+      this.props.getUserInfo();
+    })
   };
 
   render() {
+    console.log('props', this.props)
     return (
       <div>
         <Formik
           onSubmit={this.handleLogin}
           initialValues={{
-            email: "",
-            password: "",
+            LOGIN_email: "",
+            LOGIN_password: ""
           }}
           // Check for password validation
           validationSchema={Yup.object({
-            email: Yup.string()
-              .required("required"),
+            LOGIN_email: Yup.string().required("required"),
 
-            password: Yup.string()
-              .matches(
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&])$/,
-                "Must contain at least 1 cap, 1 digit & 1 spec char"
-              )
+            LOGIN_password: Yup.string()
+              // .matches(
+              //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&])$/,
+              //   "Must contain at least 1 cap, 1 digit & 1 spec char"
+              // )
               .min(8)
               .required("required"),
           })}
-          // validate={this.validateForm}
         >
-          <Form>
-            <div className="form-group">
-              <label htmlFor="">Email</label>
-              <Field name="email" id="email" className="inputField" />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="error-msg"
-              />
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <Field
-                type="password"
-                name="password"
-                id="loginPassword"
-                className="inputField"
-              />
-              <div className="error-msg">
-                <ErrorMessage 
-                  name="password" 
-                  component="div"
-                  className="error-msg"/>
-              </div>
-            </div>
+          <Form>
+            <Formgroup
+              type="email"
+              typeOfInfo="LOGIN_email"
+              title="Email"
+            />
+
+            <Formgroup 
+              type="password" 
+              typeOfInfo="LOGIN_password" 
+              title="Password" 
+            />
+
             <button type="submit">Login</button>
           </Form>
         </Formik>
@@ -78,4 +91,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+    userInfo: state.auth
+})
+
+const mapDispatchToProps = dispatch => ({
+  getUserInfo : () => dispatch(getUser)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

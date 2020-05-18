@@ -12,7 +12,7 @@ import { API } from "./libs/API";
 
 class App extends Component {
   componentDidMount(){
-    API.get('/posts')
+    API.get('api/posts')
     .then(response => {
         console.log(response)
       })

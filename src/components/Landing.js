@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import Login from './Login';
 import Register from './Register';
+import { connect } from 'react-redux';
+import { getUser } from '../redux/actions/authActions';
 
 
 class Landing extends Component {
+  componentDidMount(){
+    this.props.getUserInfo();
+    
+  }
+
   render() {
     return (
       <div>
@@ -31,4 +38,12 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+const mapStateToProps = state => {
+
+}
+
+const mapDispatchToProps = dispatch => ({
+  getUserInfo: () => dispatch(getUser)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (Landing);

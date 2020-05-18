@@ -16,6 +16,8 @@ class Header extends Component {
               <li>Edit profile</li>
               <li>Logout</li>
             </ul>
+
+            <div>Login</div>
           </div>
         </nav>
       </header>
