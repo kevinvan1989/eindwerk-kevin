@@ -9,6 +9,8 @@ import "./styles/reset.css";
 import "./styles/screen.css";
 import Overview from "./components/Overview";
 import Login from "./components/Login";
+import Register from "./components/Register";
+import CreatePost from "./components/CreatePost";
 import { API } from "./libs/API";
 
 class App extends Component {
@@ -29,6 +31,8 @@ class App extends Component {
             <Route path="/" component={Landing} exact />
             <Route path="/overview" component={Overview} />
             <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/create-post" component={CreatePost} />
             {/* Route for details */}
             <Route path="/postdetail/:id" component={Postdetail} />
           </Switch>

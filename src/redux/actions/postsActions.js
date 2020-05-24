@@ -12,6 +12,10 @@ export const fetchPost  = page => (dispatch) => {
     })
 };
 
+export const createPost = (user, values) => dispatch => {
+  
+}
+
 
 
 

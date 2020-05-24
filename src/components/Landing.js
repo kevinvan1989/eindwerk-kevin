@@ -22,6 +22,9 @@ class Landing extends Component {
               Go to Login
             </div>
             </Link>
+            <Link to="/register">
+              <div>Go to Register</div>
+            </Link>
           </div>
           <div className="intro__toPost">
             <Link to="/overview"><div className="btn">

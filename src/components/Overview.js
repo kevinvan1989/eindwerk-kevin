@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPost } from "../redux/actions/postsActions";
 import Blogpost from "./Blogpost";
-import Pagination from "./Pagination";
+import ClipLoader from "react-spinners/ClipLoader"
+import CreatePostBtn from "./CreatePostBtn";
 
 class Overview extends Component {
   componentDidMount() {
     this.props.getPosts(this.props.postData.current_page);
   }
+
+
 
   render() {
     const { postData } = this.props;
@@ -15,9 +18,13 @@ class Overview extends Component {
 
     return (
       <div>
+        <div>
+
+        <CreatePostBtn />
+        </div>
       {postData.posts ? (<div>{postData.posts.map((post) => (
           <Blogpost postDetail={post} />
-        ))}</div>) : 'Loading'}
+        ))}</div>) : <ClipLoader />}
       </div>
     );
   }

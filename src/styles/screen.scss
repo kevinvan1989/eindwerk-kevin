@@ -34,6 +34,19 @@ img{
   }
 }
 
+.create-post-icon{
+  height: 2rem;
+  width: 2rem;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+  margin: .6rem;
+  background: lightblue;
+  border-radius: 50%;
+
+}
+
 .grid-container{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
