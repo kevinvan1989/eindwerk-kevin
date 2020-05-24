@@ -5,13 +5,6 @@ import Blogpost from "./Blogpost";
 import Pagination from "./Pagination";
 
 class Overview extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      loading: true
-    }
-  }
-
   componentDidMount() {
     this.props.getPosts(this.props.postData.current_page);
   }
@@ -25,7 +18,6 @@ class Overview extends Component {
       {postData.posts ? (<div>{postData.posts.map((post) => (
           <Blogpost postDetail={post} />
         ))}</div>) : 'Loading'}
-        <Pagination />
       </div>
     );
   }

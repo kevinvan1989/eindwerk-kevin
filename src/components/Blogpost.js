@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import moment from "moment";
+import { Link } from "react-router-dom";
 import { useStore } from "react-redux";
 import commentIcon from "../assets/icons/comment.png";
 import commentIconDark from "../assets/icons/comment-icon-dark.png";
+import Time from "./Time";
 
 export default class Blogpost extends Component {
   render() {
@@ -17,43 +19,17 @@ export default class Blogpost extends Component {
       user_id,
     } = this.props.postDetail;
 
-    // body: "<p>Proptypes</p>"
-    // comments_count: 2
-    // created_at: "2020-05-13 03:47:11"
-    // id: 355
-    // title: "Yves"
-    // updated_at: "2020-05-13 03:47:11"
-    // user: {id: 37, first_name: "Yves", last_name: "Loeys", favorite_color: "#01579b", avatar: "https://api.adorable.io/avatars/285/yves.loeys@gmail.com", …}
-    // user_id: 37
-
-    let currentDate = Date.now();
-    let a = moment("2020-05-16 13:44");
-    let timeNow = moment().format("YYYY-M-D HH:mm");
-    let c = moment(currentDate).format("HH:mm");
-    let timePosted = moment(created_at);
-    const postedTimeAgo = timePosted.from(timeNow);
-
-    const dateOfPost = moment(created_at).format("YYYY-MM-DD");
-    const timeOfPost = moment(created_at).format("HH:mm");
-    // console.log("need", postedTimeAgo);
-
-    
-
-    // moment.duration().minutes();
-    // console.log(a.from(b))
-
     return (
       <div className="blogpost">
         <article>
-          <div>
-            <small>
-              {dateOfPost} at {timeOfPost}
-            </small>{" "}
-          </div>
-          <h1 dangerouslySetInnerHTML={{__html: title}}></h1>
+          <Time created_at={created_at} exactTime={true} />
+          <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
           {/* <h1>{parse(title)}</h1> */}
-          <div className="body-txt" dangerouslySetInnerHTML={{__html: body}}></div>
-          <div>Posted {postedTimeAgo}</div>
+          <div
+            className="body-txt"
+            dangerouslySetInnerHTML={{ __html: body }}
+          ></div>
+          <Time created_at={created_at} />
           {/* <button>Read more</button> ==> new button comp */}
         </article>
 
@@ -63,17 +39,17 @@ export default class Blogpost extends Component {
             user.last_name ? user.last_name : ""
           }`}</h2>
           <p>
-            <img src={commentIconDark} alt="" className="comment-icon"/>
+            <img src={commentIconDark} alt="" className="comment-icon" />
             {comments_count} comments
           </p>
           <button>
             ADD <br />
             COMMENT
           </button>
-          <button>
+          <Link to={`/postdetail/${id}`}>
             SEE <br />
-            COMMENT
-          </button>
+            DETAILS
+          </Link>
         </aside>
       </div>
     );
