@@ -4,6 +4,17 @@
   background: url($url) center center / cover;
 }
 
+@mixin flex($dir, $jc, $ai) {
+  display: flex;
+  flex-flow: $dir;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+.d-block{
+  display: block;
+}
+
 header,
 footer{
   background: #000;
@@ -34,18 +45,38 @@ img{
   }
 }
 
-.create-post-icon{
-  height: 2rem;
-  width: 2rem;
+.create-post{
+  @include flex(column nowrap, space-evenly, center);
   position: fixed;
+  width: 50px;
+  min-height: 50px;
   right: 0;
   bottom: 0;
-  padding: 1rem;
   margin: .6rem;
   background: lightblue;
+  font-variant: small-caps;
   border-radius: 50%;
+  transition: all .5s ease-in-out;
 
+  .create-post__txt{
+    display: none;
+  }
+
+  &:hover {
+    border-radius: 20px;
+    padding: 1rem;
+    transition: all .3s ease-in-out;
+    .create-post__txt{
+      display: block;
+      margin-bottom: .8rem;
+      text-align: center;
+    }
+  
+  }
+  
+ 
 }
+
 
 .grid-container{
   display: grid;

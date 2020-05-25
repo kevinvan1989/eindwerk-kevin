@@ -1,4 +1,8 @@
 @use 'reset';
+.d-block {
+  display: block;
+}
+
 header,
 footer {
   background: #000;
@@ -29,16 +33,37 @@ img {
   background: url("/img/toPostsBg.jpg") center center/cover;
 }
 
-.create-post-icon {
-  height: 2rem;
-  width: 2rem;
+.create-post {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
   position: fixed;
+  width: 50px;
+  min-height: 50px;
   right: 0;
   bottom: 0;
-  padding: 1rem;
   margin: .6rem;
   background: lightblue;
+  font-variant: small-caps;
   border-radius: 50%;
+  transition: all .5s ease-in-out;
+}
+
+.create-post .create-post__txt {
+  display: none;
+}
+
+.create-post:hover {
+  border-radius: 20px;
+  padding: 1rem;
+  transition: all .3s ease-in-out;
+}
+
+.create-post:hover .create-post__txt {
+  display: block;
+  margin-bottom: .8rem;
+  text-align: center;
 }
 
 .grid-container {
