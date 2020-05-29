@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import Formgroup from "./Formgroup";
+import Formgroup from "./Forms/Formgroup";
 import { API } from "../libs/API";
+import RegisterForm from "./Forms/RegisterForm";
 
 export default class Register extends Component {
-  handleRegister = () => {
+  handleRegister = values => {
+    const {REGISTER_firstName, REGISTER_lastName, REGISTER_email, REGISTER_password, REGISTER_avatar, REGISTER_favColor} = values;
     const userData = {
-      first_name: document.querySelector("#REGISTER_firstName").value,
-      last_name: document.querySelector("#REGISTER_lastName").value,
-      email: document.querySelector("#REGISTER_email").value,
-      password: document.querySelector("#REGISTER_password").value,
-      avatar: document.querySelector("#REGISTER_avatar").value,
-      favorite_color: document.querySelector("#REGISTER_favColor").value,
+      // Set data to API format (naming + FORMIK values)
+      first_name: REGISTER_firstName,
+      last_name: REGISTER_lastName,
+      email: REGISTER_email,
+      password: REGISTER_password,
+      avatar: REGISTER_avatar,
+      favorite_color: REGISTER_favColor
     }
 
     console.log("console after subm", userData);
@@ -20,8 +23,9 @@ export default class Register extends Component {
     // Submit all data to create new user ...
     // No tokens here
     API.post("api/users", userData).then((response) => {
-      console.log(response);
+      console.log('post response', response);
     })
+    
   }
 
   render() {
@@ -30,12 +34,13 @@ export default class Register extends Component {
         <Formik
           onSubmit={this.handleRegister}
           initialValues={{
+            // D.m.v. deze keys worden values opgehaald in <Field>
             REGISTER_firstName: "",
             REGISTER_lastName: "",
             REGISTER_email: "",
             REGISTER_password: "",
             REGISTER_avatar: "",
-            REGISTER_favColor: "#ffffff"
+            REGISTER_favColor: "#2F9599"
           }}
           // Input and give feedback / errors
           validationSchema={Yup.object({
@@ -63,45 +68,7 @@ export default class Register extends Component {
               REGISTER_favColor: Yup.string().required()
           })}
         >
-          <Form>
-            <Formgroup
-              type="text"
-              typeOfInfo="REGISTER_firstName"
-              title="First name in props"
-            />
-
-            <Formgroup 
-              type="text" 
-              typeOfInfo="REGISTER_lastName" 
-              title="Last name" 
-            />
-
-            <Formgroup 
-              type="email" 
-              typeOfInfo="REGISTER_email" 
-              title="E-mail" 
-            />
-
-            <Formgroup 
-              type="password" 
-              typeOfInfo="REGISTER_password" 
-              title="Password" 
-            />
-
-            <Formgroup 
-              type="text" 
-              typeOfInfo="REGISTER_avatar" 
-              title="Avatar" 
-            />
-
-            <Formgroup
-              type="color"
-              typeOfInfo="REGISTER_favColor"
-              title="Favorite color"
-            />
-
-            <button type="submit">Register</button>
-          </Form>
+          {props => <RegisterForm {...props} />}
         </Formik>
       </div>
     );

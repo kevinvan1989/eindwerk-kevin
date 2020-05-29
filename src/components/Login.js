@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import Formgroup from "./Formgroup";
+import Formgroup from "./Forms/Formgroup";
 import { API } from "../libs/API";
 import { getUser } from "../redux/actions/authActions"
 import {connect} from "react-redux"
+import LoginForm from "./Forms/LoginForm";
+
 
 
 class Login extends Component {  
@@ -12,14 +14,15 @@ class Login extends Component {
   clearInput = () => {
     const inputEl = document.querySelectorAll(".inputField");
     inputEl.forEach((el) => {
-      console.log(el);
+      // console.log(el);
+      el.value = ''
     });
-    console.log(inputEl);
+    // console.log(inputEl);
   };
 
   handleLogin = (values) => {
-    console.log('values', values.LOGIN_email)
-
+    console.log('values', values)
+    
     API.post('oauth/token', {
             'grant_type': 'password',
             'client_id': 2,
@@ -43,11 +46,15 @@ class Login extends Component {
 
       // De header wordt ingesteld hierboven. Daarna kunnen de gegevens worden opgehaald
       this.props.getUserInfo();
-    })
+
+      
+    }) //END of .then()
+
+    
   };
 
   render() {
-    console.log('props', this.props)
+    console.log('props uit login', this.props)
     return (
       <div>
         <Formik
@@ -70,7 +77,7 @@ class Login extends Component {
           })}
         >
 
-          <Form>
+          {/* <Form>
             <Formgroup
               type="email"
               typeOfInfo="LOGIN_email"
@@ -84,7 +91,9 @@ class Login extends Component {
             />
 
             <button type="submit">Login</button>
-          </Form>
+          </Form> */}
+
+          {props => <LoginForm {...props} />}
         </Formik>
       </div>
     );
