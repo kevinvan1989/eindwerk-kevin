@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { ErrorMessage, Form } from "formik"
+import Formgroup from "./Forms/Formgroup";
 
 export default class PostTextEditor extends Component {
   render() {
@@ -8,14 +10,22 @@ export default class PostTextEditor extends Component {
     console.log(this.props);
     return (
       <div>
+        <Form>
+          <Formgroup
+            type="text"
+            typeOfInfo="CREATE_POST_title"
+            title="Post title"
+          />
         <CKEditor
           editor={ClassicEditor}
-          data={values.PostEditor}
+          data={values.CREATE_POST_editor}
           onChange={(event, editor) => {
             const data = editor.getData();
-            setFieldValue("PostEditor", data);
+            setFieldValue("CREATE_POST_editor", data);
           }}
         />
+        <button type="submit">subm</button>
+        </Form>
       </div>
     );
   }
