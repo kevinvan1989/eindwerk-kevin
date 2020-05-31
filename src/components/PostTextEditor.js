@@ -3,6 +3,7 @@ import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { ErrorMessage, Form } from "formik"
 import Formgroup from "./Forms/Formgroup";
+import Button from "./Button";
 
 export default class PostTextEditor extends Component {
   render() {
@@ -24,7 +25,7 @@ export default class PostTextEditor extends Component {
             setFieldValue("CREATE_POST_editor", data);
           }}
         />
-        <button type="submit">subm</button>
+        <Button type="submit" btnText="Add post"/>
         </Form>
       </div>
     );

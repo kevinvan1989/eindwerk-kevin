@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import { useStore } from "react-redux";
+import { useStore, connect } from "react-redux";
 import commentIcon from "../assets/icons/comment.png";
 import commentIconDark from "../assets/icons/comment-icon-dark.png";
 import Time from "./Time";
+import Button from "./Button";
 
-export default class Blogpost extends Component {
+class Blogpost extends Component {
   render() {
     const {
       body,
@@ -18,6 +19,10 @@ export default class Blogpost extends Component {
       user,
       user_id,
     } = this.props.postDetail;
+
+    const {auth} = this.props
+
+    console.log('auth in blogpost', auth)
 
     return (
       <div className="blogpost">
@@ -42,16 +47,33 @@ export default class Blogpost extends Component {
             <img src={commentIconDark} alt="" className="comment-icon" />
             {comments_count} comments
           </p>
-          <button>
-            ADD <br />
-            COMMENT
-          </button>
+
+          {/* Check if user is logged in */}
+          {
+          (auth.user !== 'not set' && <Button btnText={`ADD COMMENT`}/>) ||
+          // Set non active + hover effect (login to add comment)
+          (auth.user === 'not set' && <Button btnText={'ADD COMMENT (to disable)'} CSS="disabled" type='button' disabled/>)
+        }
+          <Button btnText={`SEE DETAILS`} url={`/postdetail/${id}`}/>
+
+          {/* 
+          TODO :  DELETE 
           <Link to={`/postdetail/${id}`}>
             SEE <br />
             DETAILS
-          </Link>
+          </Link> */}
         </aside>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => (
+  {auth: state.auth}
+)
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Blogpost)
