@@ -9,4 +9,5 @@ export const API = axios.create({
 
 if(TOKEN){
   API.defaults.headers.common['Authorization'] = `Bearer ${TOKEN}`
+  console.log('TOKEN uit API.js', TOKEN)
 }

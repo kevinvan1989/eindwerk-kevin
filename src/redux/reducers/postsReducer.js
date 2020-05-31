@@ -1,6 +1,7 @@
-const initialState = { current_page: 1, posts: false };
+const initialState = { current_page: 1, posts: [] };
 
 const postsReducer = (state = initialState, action) => {
+  console.log('action.payload', action.payload)
   switch (action.type) {
     case "FETCH_DATA":
       return {
@@ -10,6 +11,10 @@ const postsReducer = (state = initialState, action) => {
         last_page: action.payload.last_page,
         // Get the list of posts out of data/payload
         posts: action.payload.data}
+
+    case "ADD_NEW_POST":
+      return action.payload
+      
     default:
       return state;
   }

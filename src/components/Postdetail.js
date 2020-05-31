@@ -3,7 +3,6 @@ import { API } from "../libs/API";
 import Time from "./Time";
 import Comment from "./Comment"
 import commentIconDark from "../assets/icons/comment-icon-dark.png";
-import CKEditor from 'ckeditor4-react'
 
 export default class Postdetail extends Component {
   state = {

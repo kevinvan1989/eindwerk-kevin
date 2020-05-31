@@ -10,15 +10,19 @@ export const fetchPost  = page => (dispatch) => {
         payload: response.data
       });
     })
-};
-
-export const createPost = (user, values) => dispatch => {
-  
 }
 
-
-
-
+export const addNewPost = (values) => dispatch =>{
+  //console.log('user in create post', user)
+  console.log('values in create post', values)
+  API.post("/api/posts", {"title": 'replace-this', 'body': 'replace-this'}).then(response => {
+    console.log('addnewpost', response)
+    return dispatch({
+      type: "ADD_NEW_POST",
+      payload: response.data
+    })
+  })
+}
 
 
 // export const fetchPost = param => async dispatch => {
