@@ -6,7 +6,7 @@ export default class Button extends Component {
     const { btnText, url, type, disabled } = this.props;
     console.log(disabled)
     if (url) {
-      return (<Link to={url}>
+      return (<Link to={url} >
         <button>{btnText}</button>
       </Link>)
     }else{

@@ -7,7 +7,9 @@ import commentIconDark from "../assets/icons/comment-icon-dark.png";
 import Time from "./Time";
 import Button from "./Button";
 
+
 class Blogpost extends Component {
+
   render() {
     const {
       body,
@@ -50,7 +52,7 @@ class Blogpost extends Component {
 
           {/* Check if user is logged in */}
           {
-          (auth.user !== 'not set' && <Button btnText={`ADD COMMENT`}/>) ||
+          (auth.user !== 'not set' && <Button btnText={`ADD COMMENT`} url={`/postdetail/${id}`} ref={'#comment-editor'}/>) ||
           // Set non active + hover effect (login to add comment)
           (auth.user === 'not set' && <Button btnText={'ADD COMMENT (to disable)'} CSS="disabled" type='button' disabled/>)
         }
@@ -73,7 +75,7 @@ const mapStateToProps = state => (
 )
 
 const mapDispatchToProps = dispatch => ({
-
+  
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blogpost)

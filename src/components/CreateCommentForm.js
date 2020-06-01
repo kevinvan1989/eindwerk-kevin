@@ -5,29 +5,30 @@ import { ErrorMessage, Form } from "formik"
 import Formgroup from "./Forms/Formgroup";
 import Button from "./Button";
 
-export default class PostTextEditor extends Component {
+export default class CreateCommentForm extends Component {
   render() {
     const { setFieldValue, values } = this.props;
-    console.log(this.props);
     return (
       <div>
         <Form>
-          <Formgroup
-            type="text"
-            typeOfInfo="CREATE_POST_title"
-            title="Post title"
-          />
+          <h2>Add comment</h2>
         <CKEditor
           editor={ClassicEditor}
-          data={values.ADD_COMMENT__editor}
+          data={values.ADD_COMMENT_editor}
           onChange={(event, editor) => {
             const data = editor.getData();
-            setFieldValue("CREATE_POST_editor", data);
+            setFieldValue("ADD_COMMENT_editor", data);
+          }}
+          autofocus={true}
+
+          // Focus on editor / textfield on load
+          onInit={editor => {
+            editor.editing.view.focus()
           }}
         />
-        <Button type="submit" btnText="Add post"/>
+        <Button type="submit" btnText="Post comment"/>
         </Form>
       </div>
-    );
+    )
   }
 }

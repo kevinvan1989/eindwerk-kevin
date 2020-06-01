@@ -81,6 +81,14 @@ img{
 .grid-container{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+
+  .grid__col--1{
+    background: rgb(238, 255, 87);
+  }
+
+  .grid__col--2{
+    background: rgb(54, 218, 247);
+  }
 }
 
 .error{

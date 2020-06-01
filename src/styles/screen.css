@@ -71,6 +71,14 @@ img {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.grid-container .grid__col--1 {
+  background: #eeff57;
+}
+
+.grid-container .grid__col--2 {
+  background: #36daf7;
+}
+
 .error {
   color: red;
 }

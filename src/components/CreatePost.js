@@ -34,7 +34,7 @@ import { addNewPost } from "../redux/actions/postsActions";
 }
 
 const mapDispatchToProps = dispatch => ({
-  createPost: (user, post) => dispatch(addNewPost(user, post))
+  createPost: post => dispatch(addNewPost(post))
 } )
 
 export default connect(undefined, mapDispatchToProps)(CreatePost)

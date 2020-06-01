@@ -3,16 +3,23 @@ import { API } from "../libs/API";
 import Time from "./Time";
 import Comment from "./Comment"
 import commentIconDark from "../assets/icons/comment-icon-dark.png";
+import CreateComment from "./CreateComment";
+import { connect } from "react-redux";
+import { getUser } from "../redux/actions/authActions";
 
-export default class Postdetail extends Component {
+// TODO : Delete all "getUser blabla"
+//        Comes with 'overview' but now entered here for developing purp.
+
+class Postdetail extends Component {
   state = {
     post: {
       // user is defined for destructuring
-      user: "",
+      user: ""
     },
   };
 
   componentDidMount() {
+    this.props.getUser();
     console.log(this.props.match.params.id);
     const { id } = this.props.match.params;
 
@@ -22,13 +29,16 @@ export default class Postdetail extends Component {
     });
   }
 
-  
+  componentDidUpdate(prevState){
+    console.log('updated!!!')
+    console.log(prevState)
+  }
 
   render() {
     console.log("state", this.state);
-    const { title, body, created_at, updated_at, comments } = this.state.post;
+    const { id: postId, title, body, created_at, updated_at, comments } = this.state.post;
     const {
-      id,
+      id: userId,
       first_name,
       last_name,
       favorite_color,
@@ -36,6 +46,11 @@ export default class Postdetail extends Component {
       last_login_at,
     } = this.state.post.user;
     console.log(comments);
+
+
+    const {isLoggedIn} = this.props
+
+    console.log('post detail props', 'postID', postId, 'userID', userId)
 
     return (
       <div className="grid-container grid-container--2-col">
@@ -55,10 +70,12 @@ export default class Postdetail extends Component {
               dangerouslySetInnerHTML={{ __html: body }}
             ></div>
           </article>
-          <section id='editor'>
 
-          </section>
-
+          {/* Check if user is logged in:
+                if so: show text area for comment
+                if not: hide text area for comment */}
+          {isLoggedIn.user !== 'not set' && <CreateComment postId={postId}/>}
+          
           {/* Flex item right with image and name */}
           <aside>
             <img src={avatar} alt="" />
@@ -80,3 +97,13 @@ export default class Postdetail extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.auth
+})
+
+const mapDispatchToProps = dispatch => ({
+  getUser: () => dispatch(getUser)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Postdetail)
