@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import Time from './Time'
+import Userinfo from "./Userinfo"
 
 export default class Comment extends Component {
 
   render() {
-    const { blog_post_id, body, created_at, id, updated_at } = this.props.commentData
-    const { avatar, first_name, last_name, last_login_at, favorite_color } = this.props.commentData.user
+    const { blog_post_id, body, created_at, id: commentID, updated_at } = this.props.commentData
+    const { id: userId, avatar, first_name, last_name, last_login_at, favorite_color } = this.props.commentData.user
 
     return (
       <div className="flex comment">
@@ -14,8 +15,13 @@ export default class Comment extends Component {
             [icon] check out profile
           </div>
           <div className="grid__col">
-            <img src={avatar} alt="No image" className="grid__item--img"/>
-            <h2 className="grid__item--username">{`${first_name} ${last_name ? last_name : ""}`}</h2>
+          <Userinfo 
+            userId={userId}
+            imgUrl={{avatar: avatar, avatar_class: "grid__item--img"}}
+            name_class="grid__item--username"
+            firstName={first_name}
+            lastName={last_name}
+            optClassNames={true}/>
           </div>
 
         </div>

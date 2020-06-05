@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import EditPost from "./components/EditPost";
 import Postdetail from "./Pages/Postdetail";
 import moment from "moment";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -37,6 +38,8 @@ class App extends Component {
             {/* Route for details */}
             <Route path="/postdetail/:id" component={Postdetail} />
             <Route path="/profile-page/:id" component={ProfilePage} />
+            <Route path="/edit-post/:idPost" component={EditPost} />
+            
           </Switch>
 
           <Footer currentYear={moment().format("YYYY")} />

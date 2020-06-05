@@ -87,15 +87,11 @@ class Postdetail extends Component {
           <aside>
             <Userinfo
               userId={userId}
-              imgUrl={avatar}
+              imgUrl={{avatar: avatar, avatar_class: ""}}
               firstName={first_name}
               lastName={last_name}
             />
           </aside>
-          {/* <aside>
-            <img src={avatar} alt="" />
-            <h2>{`${first_name} ${last_name ? last_name : ""}`}</h2>
-          </aside> */}
         </section>
 
         {/* Colulmn with all comments */}
