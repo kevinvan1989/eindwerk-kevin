@@ -30,6 +30,10 @@ img{
   grid-row: 1 / span 2;
 }
 
+.names{
+  text-transform: capitalize;
+}
+
 .intro{
   display: grid;
   grid-template-columns: 2fr 1fr;

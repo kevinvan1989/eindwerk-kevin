@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import Formgroup from "./Forms/Formgroup";
 import { API } from "../libs/API";
 import { getUser } from "../redux/actions/authActions"
 import {connect} from "react-redux"
-import LoginForm from "./Forms/LoginForm";
+import LoginForm from "../components/Forms/LoginForm";
 
 
 

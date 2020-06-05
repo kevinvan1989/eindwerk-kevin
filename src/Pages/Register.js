@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import Formgroup from "./Forms/Formgroup";
 import { API } from "../libs/API";
-import RegisterForm from "./Forms/RegisterForm";
+import RegisterForm from "../components/Forms/RegisterForm";
 
 export default class Register extends Component {
   handleRegister = values => {

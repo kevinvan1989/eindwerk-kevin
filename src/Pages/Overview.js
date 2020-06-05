@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPost } from "../redux/actions/postsActions";
-import Blogpost from "./Blogpost";
+import Blogpost from "../components/Blogpost";
 import ClipLoader from "react-spinners/ClipLoader";
-import CreatePostBtn from "./CreatePostBtn";
+import CreatePostBtn from "../components/CreatePostBtn";
 import { getUser } from "../redux/actions/authActions";
 
 class Overview extends Component {

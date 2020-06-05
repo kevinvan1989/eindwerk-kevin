@@ -6,6 +6,7 @@ import commentIcon from "../assets/icons/comment.png";
 import commentIconDark from "../assets/icons/comment-icon-dark.png";
 import Time from "./Time";
 import Button from "./Button";
+import Userinfo from "./Userinfo";
 
 
 class Blogpost extends Component {
@@ -19,7 +20,7 @@ class Blogpost extends Component {
       title,
       updated_at,
       user,
-      user_id,
+      user_id: userId,
     } = this.props.postDetail;
 
     const {auth} = this.props
@@ -41,10 +42,11 @@ class Blogpost extends Component {
         </article>
 
         <aside>
-          <img src={user.avatar} alt="" />
-          <h2>{`${user.first_name} ${
-            user.last_name ? user.last_name : ""
-          }`}</h2>
+           <Userinfo 
+            userId={userId}
+            imgUrl={user.avatar}
+            firstName={user.first_name}
+            lastName={user.last_name}/>
           <p>
             <img src={commentIconDark} alt="" className="comment-icon" />
             {comments_count} comments
