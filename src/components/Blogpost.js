@@ -7,9 +7,17 @@ import commentIconDark from "../assets/icons/comment-icon-dark.png";
 import Time from "./Time";
 import Button from "./Button";
 import Userinfo from "./Userinfo";
-
+import { API } from "../libs/API";
+import {deletePost, fetchPost} from '../redux/actions/postsActions'
 
 class Blogpost extends Component {
+  deletePost = id => {
+    API.delete(`/api/posts/${id}`).then(
+      response => {
+        console.log(response) 
+      }
+    )
+  }
 
   render() {
     const {
@@ -44,7 +52,7 @@ class Blogpost extends Component {
         <aside>
            <Userinfo 
             userId={userId}
-            imgUrl={user.avatar}
+            imgUrl={{avatar: user.avatar, avatar_class: "grid__item--img"}}
             firstName={user.first_name}
             lastName={user.last_name}/>
           <p>
@@ -67,6 +75,11 @@ class Blogpost extends Component {
             DETAILS
           </Link> */}
         </aside>
+
+        {/* MODIFYING SECTION (if logged in ...) */}
+        {/* {auth.payload && auth.payload.id === userId && <Button btnText="Edit Post" url={`/edit-post/${id}`}/> }
+        {auth.payload && auth.payload.id === userId && <Button btnText="Delete Post" url={`/delete-post/${id}`}/> } */}
+        {auth.payload && auth.payload.id === userId && <Button btnText="Delete Post" func2={()=>this.deletePost(id)}  func={()=>this.props.delete(id)}/> }
       </div>
     );
   }
@@ -77,7 +90,7 @@ const mapStateToProps = state => (
 )
 
 const mapDispatchToProps = dispatch => ({
-  
+  delete: (id) => dispatch(deletePost(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blogpost)
