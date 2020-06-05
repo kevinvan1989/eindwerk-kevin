@@ -40,6 +40,19 @@ export const addComment = (values, postID) => dispatch => {
   )
 }
 
+// Is in actions because of reuse
+export const deletePost = postID => dispatch => {
+  API.delete(`/api/posts/${postID}`).then(
+    response => {
+      console.log(response)
+      return dispatch(
+        {
+          type: "DELETE"
+        }
+      )
+    }
+  )
+}
 
 // export const fetchPost = param => async dispatch => {
 //     await API.get("/api/posts?page="+param).then(response => {
