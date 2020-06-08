@@ -17,6 +17,7 @@ class Postdetail extends Component {
       // user is defined for destructuring
       user: "",
     },
+    comments: [],
   };
 
   componentDidMount() {
@@ -26,7 +27,7 @@ class Postdetail extends Component {
 
     API.get(`/api/posts/${id}`).then((res) => {
       console.log("detail", res.data);
-      this.setState({ post: res.data });
+      this.setState({ post: res.data, comments: res.data.comments });
     });
   }
 
@@ -35,8 +36,16 @@ class Postdetail extends Component {
     console.log(prevState);
   }
 
+  addCommentToState = comment => {
+    const commentList = this.state.comments
+    commentList.push(comment)
+    this.setState({
+      comments: commentList
+    })
+  }
+
   render() {
-    console.log("state", this.state);
+    console.log("map props", this.props);
     const {
       id: postId,
       title,
@@ -45,6 +54,9 @@ class Postdetail extends Component {
       updated_at,
       comments,
     } = this.state.post;
+
+    console.log(this.state.comments);
+
     const {
       id: userId,
       first_name,
@@ -53,7 +65,6 @@ class Postdetail extends Component {
       avatar,
       last_login_at,
     } = this.state.post.user;
-    console.log(comments);
 
     const { isLoggedIn } = this.props;
 
@@ -68,7 +79,7 @@ class Postdetail extends Component {
             {/* Comment count total */}
             <div>
               <img src={commentIconDark} alt="" className="comment-icon" />
-              {comments ? comments.length : ""} comments
+              {this.state.comments.length} comments
             </div>
             <h1>{title}</h1>
             <Time created_at={created_at} exactTime={true} />
@@ -81,13 +92,13 @@ class Postdetail extends Component {
           {/* Check if user is logged in:
                 if so: show text area for comment
                 if not: hide text area for comment */}
-          {isLoggedIn.user !== "not set" && <CreateComment postId={postId} />}
+          {isLoggedIn.user !== "not set" && <CreateComment postId={postId} addComment={this.addCommentToState} />}
 
           {/* Flex item right with image and name ;*/}
           <aside>
             <Userinfo
               userId={userId}
-              imgUrl={{avatar: avatar, avatar_class: ""}}
+              imgUrl={{ avatar: avatar, avatar_class: "" }}
               firstName={first_name}
               lastName={last_name}
             />
@@ -96,10 +107,9 @@ class Postdetail extends Component {
 
         {/* Colulmn with all comments */}
         <section className="grid__col grid__col--2">
-          {console.log(comments)}
-          {comments && comments.length !== 0
-            ? comments.map((comment) => <Comment commentData={comment} />)
-            : "no comments"}
+          {this.state.comments.map((comment) => (
+            <Comment commentData={comment} />
+          ))}
         </section>
       </div>
     );
@@ -108,6 +118,7 @@ class Postdetail extends Component {
 
 const mapStateToProps = (state) => ({
   isLoggedIn: state.auth,
+  posts: state.post
 });
 
 const mapDispatchToProps = (dispatch) => ({

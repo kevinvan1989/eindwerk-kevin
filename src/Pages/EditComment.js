@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class EditPost extends Component {
+export default class EditComments extends Component {
     render() {
         return (
             <div>
-                Daarna Dispatch
+                
             </div>
         )
     }

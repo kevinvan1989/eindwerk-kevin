@@ -9,9 +9,11 @@ import CreateCommentForm from './CreateCommentForm';
 class CreateComment extends Component {
   handlePostComment = values => {
     const {postId} = this.props
+    console.log(values)
     // console.log('comment values', values)
     // console.log('props in create comment', this.props)
     this.props.postComment(values, postId)
+    // this.props.setCommentState(values)
   } 
 
   render() {

@@ -1,5 +1,6 @@
 import { API } from "../../libs/API";
 
+
 // Een type dispatchen en een payload
 // Checken en of inloggen
 export const getUser = dispatch => {
@@ -11,3 +12,4 @@ export const getUser = dispatch => {
       });
     })
 };
+

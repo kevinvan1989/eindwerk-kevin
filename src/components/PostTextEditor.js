@@ -14,15 +14,15 @@ export default class PostTextEditor extends Component {
         <Form>
           <Formgroup
             type="text"
-            typeOfInfo="CREATE_POST_title"
+            typeOfInfo="POST_title"
             title="Post title"
           />
         <CKEditor
           editor={ClassicEditor}
-          data={values.ADD_COMMENT__editor}
+          data={values.POST_editor}
           onChange={(event, editor) => {
             const data = editor.getData();
-            setFieldValue("CREATE_POST_editor", data);
+            setFieldValue("POST_editor", data);
           }}
         />
         <Button type="submit" btnText="Add post"/>

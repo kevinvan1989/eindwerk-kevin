@@ -1,7 +1,23 @@
-const initialState = { current_page: 1, posts: [] };
+const initialState = {
+  current_page: 1,
+  posts: [],
+  postDetail: {},
+  particularComment: "",
+  // Init values to prevent destructure probs
+  userDetails: {
+    avatar: ' ',
+    blog_posts: [],
+    comments: ' ',
+    created_at: ' ',
+    favorite_color: ' ',
+    first_name: ' ',
+    last_name: ' ',
+    last_login_at: ' '
+  },
+  loading: true
+};
 
 const postsReducer = (state = initialState, action) => {
-  console.log('action.payload', action.payload)
   switch (action.type) {
     case "FETCH_DATA":
       return {
@@ -10,11 +26,45 @@ const postsReducer = (state = initialState, action) => {
         // Last page
         last_page: action.payload.last_page,
         // Get the list of posts out of data/payload
-        posts: action.payload.data}
+        posts: action.payload.data,
+      };
+
+    case "ADD_COMMENT": {
+      return {
+        ...state,
+        particularComment: action.payload,
+      };
+    }
 
     case "ADD_NEW_POST":
-      return action.payload
-      
+      return action.payload;
+
+    case "SHOW_DETAIL":
+      return { ...state, postDetail: action.payload };
+
+    case "SET_USER_DETAILS":
+      return {
+        ...state,
+        loading: false,
+        userDetails: action.payload,
+      };
+
+      // TODO fix redux actions / reducers
+      case "DELETE":
+        const posts = {...state.posts}
+        const postId = action.payload
+
+
+        console.log(posts)
+        
+
+        // return{}
+
+     
+        return{
+          ...state
+        }
+
     default:
       return state;
   }

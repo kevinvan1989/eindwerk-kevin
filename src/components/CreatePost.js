@@ -19,14 +19,14 @@ import { addNewPost } from "../redux/actions/postsActions";
         <Formik
           onSubmit={this.handleSubmitCreate}
           initialValues={{
-            CREATE_POST_title: '',
+            POST_title: 'test',
             // D.m.v. deze keys worden values opgehaald in <Field>
-            CREATE_POST_editor: 'init value Formik'
+            POST_editor: 'init value Formik'
           }}
           // Input and give feedback / errors
           validationSchema={Yup.object({})}
         >
-          {props => <PostTextEditor {...props} />}
+          {props => <PostTextEditor {...props} initValueName='CREATE_POST'/>}
         </Formik>
       </div>
     );

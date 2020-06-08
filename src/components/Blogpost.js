@@ -8,7 +8,7 @@ import Time from "./Time";
 import Button from "./Button";
 import Userinfo from "./Userinfo";
 import { API } from "../libs/API";
-import {deletePost, fetchPost} from '../redux/actions/postsActions'
+import {showParticularPost, deletePost, fetchPost} from '../redux/actions/postsActions'
 
 class Blogpost extends Component {
   deletePost = id => {
@@ -34,6 +34,7 @@ class Blogpost extends Component {
     const {auth} = this.props
 
     console.log('auth in blogpost', auth)
+    console.log(this.props)
 
     return (
       <div className="blogpost">
@@ -66,20 +67,14 @@ class Blogpost extends Component {
           // Set non active + hover effect (login to add comment)
           (auth.user === 'not set' && <Button btnText={'ADD COMMENT (to disable)'} CSS="disabled" type='button' disabled/>)
         }
-          <Button btnText={`SEE DETAILS`} url={`/postdetail/${id}`}/>
 
-          {/* 
-          TODO :  DELETE 
-          <Link to={`/postdetail/${id}`}>
-            SEE <br />
-            DETAILS
-          </Link> */}
+          <Button btnText={`SEE DETAILS`} url={`/postdetail/${id}`}/>
+          {/* <Button btnText={`SEE DETAILS redux`}  func={()=>this.props.showDetail(id)}/> */}
         </aside>
 
         {/* MODIFYING SECTION (if logged in ...) */}
-        {/* {auth.payload && auth.payload.id === userId && <Button btnText="Edit Post" url={`/edit-post/${id}`}/> }
-        {auth.payload && auth.payload.id === userId && <Button btnText="Delete Post" url={`/delete-post/${id}`}/> } */}
-        {auth.payload && auth.payload.id === userId && <Button btnText="Delete Post" func2={()=>this.deletePost(id)}  func={()=>this.props.delete(id)}/> }
+        {auth.payload && auth.payload.id === userId && <Button btnText="Edit Post" url={`/edit-post/${id}`}/> }
+        {auth.payload && auth.payload.id === userId && <Button btnText="Delete Post" func={()=>this.props.delete(id)}/> }
       </div>
     );
   }
@@ -90,7 +85,8 @@ const mapStateToProps = state => (
 )
 
 const mapDispatchToProps = dispatch => ({
-  delete: (id) => dispatch(deletePost(id))
+  delete: (id) => dispatch(deletePost(id)),
+  showDetail: postId => dispatch(showParticularPost(postId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blogpost)

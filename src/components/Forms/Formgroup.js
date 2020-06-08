@@ -13,7 +13,7 @@ export default class Formgroup extends Component {
           name={typeOfInfo}
           id={typeOfInfo}
           className="inputField"
-          
+          defaultValue={typeOfInfo.value}
         />
 
 {/* VRAGEN JNNCK : is die tag nodig? */}

@@ -8,9 +8,13 @@ import { getUser } from "../redux/actions/authActions";
 
 class Overview extends Component {
   componentDidMount() {
-    this.props.getPosts(this.props.postData);
+    this.props.getPosts(1);
     this.props.getUser();
     console.log("props in overview", this.props);
+  }
+
+  componentDidUpdate(prevProps, props){
+    console.log(prevProps, this.props)
   }
 
   render() {
