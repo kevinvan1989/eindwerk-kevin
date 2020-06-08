@@ -5,10 +5,14 @@ import { API } from "../libs/API";
 import { getUser } from "../redux/actions/authActions"
 import {connect} from "react-redux"
 import LoginForm from "../components/Forms/LoginForm";
+import { Redirect } from "react-router-dom";
 
 
 
 class Login extends Component {  
+  state = {
+    redirect: false
+  }
 
   clearInput = () => {
     const inputEl = document.querySelectorAll(".inputField");
@@ -41,16 +45,16 @@ class Login extends Component {
       // De header wordt ingesteld hierboven. Daarna kunnen de gegevens worden opgehaald
       this.props.getUserInfo();
 
+      this.setState({redirect: true})
       
     }) //END of .then()
-
-    
   };
 
   render() {
     return (
+      
       <div>
-        <Formik
+        {!this.state.redirect ? <Formik
           onSubmit={this.handleLogin}
           initialValues={{
             LOGIN_email: "",
@@ -87,7 +91,8 @@ class Login extends Component {
           </Form> */}
 
           {props => <LoginForm {...props} />}
-        </Formik>
+        </Formik> : <Redirect to={'/overview'}/>}
+        
       </div>
     );
   }
