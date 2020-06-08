@@ -33,9 +33,6 @@ class Landing extends Component {
             </Link>
           </div>
         </div> {/* END OF INTRO */}
-        
-        <Login />
-        <Register />
       </div>
     );
   }
