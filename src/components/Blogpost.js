@@ -37,20 +37,18 @@ class Blogpost extends Component {
     console.log(this.props)
 
     return (
-      <div className="blogpost">
+      <div className="blogpost m-2">
         <article>
           <Time created_at={created_at} exactTime={true} />
           <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
-          {/* <h1>{parse(title)}</h1> */}
           <div
             className="body-txt"
             dangerouslySetInnerHTML={{ __html: body }}
           ></div>
           <Time created_at={created_at} />
-          {/* <button>Read more</button> ==> new button comp */}
         </article>
 
-        <aside>
+        <aside className='m-3 p-3'>
            <Userinfo 
             userId={userId}
             imgUrl={{avatar: user.avatar, avatar_class: "grid__item--img"}}
@@ -61,18 +59,18 @@ class Blogpost extends Component {
             {comments_count} comments
           </p>
 
-          {/* Check if user is logged in */}
+
           {
           (auth.user !== 'not set' && <Button btnText={`ADD COMMENT`} url={`/postdetail/${id}`} ref={'#comment-editor'}/>) ||
-          // Set non active + hover effect (login to add comment)
+          
           (auth.user === 'not set' && <Button btnText={'ADD COMMENT (to disable)'} CSS="disabled" type='button' disabled/>)
         }
 
           <Button btnText={`SEE DETAILS`} url={`/postdetail/${id}`}/>
-          {/* <Button btnText={`SEE DETAILS redux`}  func={()=>this.props.showDetail(id)}/> */}
+
         </aside>
 
-        {/* MODIFYING SECTION (if logged in ...) */}
+
         {auth.payload && auth.payload.id === userId && <Button btnText="Edit Post" url={`/edit-post/${id}`}/> }
         {auth.payload && auth.payload.id === userId && <Button btnText="Delete Post" func={()=>this.props.delete(id)}/> }
       </div>

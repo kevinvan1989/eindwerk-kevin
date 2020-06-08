@@ -73,7 +73,7 @@ class Postdetail extends Component {
     return (
       <div className="grid-container grid-container--2-col">
         {/* Column with orignal post and text editor */}
-        <section className="grid__col grid__col--1 flex">
+        <section className="grid__col grid__col--1 flex p-3">
           {/* Display blogpost(text content) & avatar as flex */}
           <article>
             {/* Comment count total */}
@@ -95,7 +95,7 @@ class Postdetail extends Component {
           {isLoggedIn.user !== "not set" && <CreateComment postId={postId} addComment={this.addCommentToState} />}
 
           {/* Flex item right with image and name ;*/}
-          <aside>
+          <aside className="m-auto text-center">
             <Userinfo
               userId={userId}
               imgUrl={{ avatar: avatar, avatar_class: "" }}

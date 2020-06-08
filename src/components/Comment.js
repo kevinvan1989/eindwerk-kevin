@@ -9,11 +9,8 @@ export default class Comment extends Component {
     const { id: userId, avatar, first_name, last_name, last_login_at, favorite_color } = this.props.commentData.user
 
     return (
-      <div className="flex comment">
+      <div className="flex comment m-3 card">
         <div className="flex__item flex__item--left grid-container grid__area">
-          <div className="grid__col grid__item--more">
-            [icon] check out profile
-          </div>
           <div className="grid__col">
           <Userinfo 
             userId={userId}

@@ -4,15 +4,15 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <nav>
+        <nav className="d-flex flex-row justify-content-between">
           <ul>
             <li></li>
           </ul>
           <div>logo</div>
-          <div>
+          <div className="d-flex flex-row justify-content-between">
             <span>person icon</span>
             {/* Conditional logged in or not */}
-            <ul>
+            <ul className="d-flex flex-row">
               <li>Edit profile</li>
               <li>Logout</li>
             </ul>

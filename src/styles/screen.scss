@@ -11,8 +11,17 @@
   align-items: $ai;
 }
 
+body{
+  box-sizing: border-box;
+}
+
 .d-block{
   display: block;
+}
+
+.grid-container--2-col{
+  display: grid;
+  grid-template-columns: .8fr .2fr;
 }
 
 header,
@@ -46,6 +55,14 @@ img{
 
   &__toPost{
     @include backgroundCover('/img/toPostsBg.jpg');
+  }
+}
+
+.blogpost{
+  display: flex;
+
+  article{
+    flex: 4
   }
 }
 
@@ -87,11 +104,11 @@ img{
   grid-template-columns: repeat(2, 1fr);
 
   .grid__col--1{
-    background: rgb(238, 255, 87);
+    background: rgb(172, 172, 172);
   }
 
   .grid__col--2{
-    background: rgb(54, 218, 247);
+    background: rgb(214, 214, 214);
   }
 }
 
@@ -100,7 +117,7 @@ img{
 }
 
 .blogpost{
-  border: 2px solid lightseagreen;
+  background: #ddd;
 }
 
 .comment-icon{
@@ -108,5 +125,5 @@ img{
 }
 
   aside{
-    border: 1px solid #000;
+    border: 1px solid #fff;
   }
