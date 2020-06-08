@@ -16,7 +16,7 @@ class Landing extends Component {
     return (
       <div>
         <div className="intro">
-          <img src="img/header.jpg" alt=""/>
+          <img src="img/header.jpg" alt="" className="intro__hero__img"/>
           <div className="intro__login">
             <Link to="/login"><div className="">
               Go to Login

@@ -34,7 +34,7 @@ class Blogpost extends Component {
     const {auth} = this.props
 
     return (
-      <div className="blogpost m-2">
+      <div className="blogpost">
         <article>
           <Time created_at={created_at} exactTime={true} />
           <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
@@ -45,18 +45,19 @@ class Blogpost extends Component {
           <Time created_at={created_at} />
         </article>
 
-        <aside className='m-3 p-3'>
+        <aside className='m-3 p-3 user-info'>
            <Userinfo 
             userId={userId}
             imgUrl={{avatar: user.avatar, avatar_class: "grid__item--img"}}
             firstName={user.first_name}
             lastName={user.last_name}/>
           <p>
-            <img src={commentIconDark} alt="" className="comment-icon" />
+
             {comments_count} comments
           </p>
 
 
+          <div className="btnBox d-flex justify-content-between px-2">
           {
           (auth.user !== 'not set' && <Button btnText={`ADD COMMENT`} url={`/postdetail/${id}`} ref={'#comment-editor'}/>) ||
           
@@ -64,6 +65,8 @@ class Blogpost extends Component {
         }
 
           <Button btnText={`SEE DETAILS`} url={`/postdetail/${id}`}/>
+          </div>
+         
 
         </aside>
 

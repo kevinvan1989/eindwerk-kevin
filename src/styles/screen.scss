@@ -13,6 +13,7 @@
 
 body{
   box-sizing: border-box;
+  background: #444;
 }
 
 .d-block{
@@ -31,19 +32,47 @@ footer{
 }
 
 .btn{
-  background: lightgreen;
+  background-color: #fff !important;
+  border-radius: 10px;
+
+  &:hover{
+    background-color: #f9f62d !important;
+  }
+
 }
 
 img{
   max-width: 100%;
   grid-row: 1 / span 2;
+  display: block;
+}
+
+.intro__hero__img{
+  min-height: 100vh;
 }
 
 .names{
   text-transform: capitalize;
 }
 
+.form-group{
+  width: 450px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+
+  label, input{
+    display: block !important;
+  }
+
+  input{
+    width: 300px;
+  }
+}
+
+
 .intro{
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -60,6 +89,12 @@ img{
 
 .blogpost{
   display: flex;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 10px 10px 24px -5px rgba(0,0,0,0.75);
+  margin: .5rem auto 2rem;
+  background: linear-gradient(90deg, rgba(255,253,155,1) 0%, rgba(255,255,218,1) 100%);
+  width: 80%;
 
   article{
     flex: 4
@@ -98,6 +133,13 @@ img{
  
 }
 
+.user-info{
+  text-align: center;
+  margin: auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
 
 .grid-container{
   display: grid;
@@ -116,14 +158,22 @@ img{
   color: red;
 }
 
-.blogpost{
-  background: #ddd;
-}
-
 .comment-icon{
   max-width: 1.5rem;
 }
 
   aside{
-    border: 1px solid #fff;
+    box-shadow: 5px 5px 15px -5px rgba(0,0,0,0.75);
+    background: linear-gradient(60deg, rgba(51,162,179,1) 0%, rgba(218,247,255,1) 100%);
+    border-radius: 10px;
+  }
+
+  .detail--aside{
+    padding: 2rem;
+    width: 400px;
+    img{
+      display: inline;
+      max-width: 50%;
+      margin: 0;
+    }
   }

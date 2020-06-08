@@ -88,7 +88,7 @@ class Postdetail extends Component {
           )}
 
           {/* Flex item right with image and name ;*/}
-          <aside className="m-auto text-center">
+          <aside className="m-auto text-center detail--aside">
             <Userinfo
               userId={userId}
               imgUrl={{ avatar: avatar, avatar_class: "" }}

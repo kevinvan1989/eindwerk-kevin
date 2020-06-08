@@ -14,9 +14,10 @@ class Overview extends Component {
 
   render() {
     const { postData, userAuthorized } = this.props;
-
+    
     if(postData.length !== 0){
       return (<div>
+        <h1 className='text-center my-2'>Blogposts overview</h1>
         <div>{userAuthorized.user !== "not set" && <CreatePostBtn />}</div>
         {postData.posts.length !== 0 ? (
           <div>

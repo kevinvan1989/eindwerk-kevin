@@ -6,7 +6,7 @@ import Formgroup from "./Formgroup"
 export default class LoginForm extends Component {
   render() {
     return (
-      <div>
+      <div className="m-5">
         <Form>
             <Formgroup
               type="email"

@@ -40,7 +40,7 @@ export default class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div className="m-5">
         {!this.state.redirect ? (
           <Formik
             onSubmit={this.handleRegister}

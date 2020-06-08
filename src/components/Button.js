@@ -6,7 +6,7 @@ export default class Button extends Component {
     const { btnText, url, type, disabled, func } = this.props;
     if (url) {
       return (<Link to={url} >
-        <button>{btnText}</button>
+        <button className="btn">{btnText}</button>
       </Link>)
     }else if(func){
       return <button onClick={func}>{btnText}</button>

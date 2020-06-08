@@ -1,24 +1,12 @@
 import React, { Component } from "react";
+import logo from "../assets/logo-white.png";
 
 class Header extends Component {
   render() {
     return (
       <header>
-        <nav className="d-flex flex-row justify-content-between">
-          <ul>
-            <li></li>
-          </ul>
-          <div>logo</div>
-          <div className="d-flex flex-row justify-content-between">
-            <span>person icon</span>
-            {/* Conditional logged in or not */}
-            <ul className="d-flex flex-row">
-              <li>Edit profile</li>
-              <li>Logout</li>
-            </ul>
-
-            <div>Login</div>
-          </div>
+        <nav className="d-flex flex-row justify-content-center text-center">
+          <div><img src={logo} alt=""/></div>
         </nav>
       </header>
     );

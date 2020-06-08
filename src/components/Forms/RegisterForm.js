@@ -12,7 +12,7 @@ export default class RegisterForm extends Component {
             <Formgroup
               type="text"
               typeOfInfo="REGISTER_firstName"
-              title="First name in props"
+              title="First name"
             />
 
             <Formgroup 
