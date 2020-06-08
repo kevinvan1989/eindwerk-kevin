@@ -19,14 +19,14 @@ class Overview extends Component {
 
   render() {
     const { postData, userAuthorized } = this.props;
-    //console.log('postData in overview', postData.last_page, postData.current_page)
+    console.log('postData in overview', postData.last_page, postData.current_page)
 
     console.log("postdata in overview", postData);
 
     return (
       <div>
-        <div>{userAuthorized.user !== "not set" && <CreatePostBtn />}</div>
-        {postData.posts ? (
+        {/* <div>{userAuthorized.user !== "not set" && <CreatePostBtn />}</div> */}
+        {postData ? (
           <div>
             {postData.posts.map((post) => (
               <Blogpost postDetail={post} />
@@ -35,6 +35,8 @@ class Overview extends Component {
         ) : (
           <ClipLoader />
         )}
+
+    <p>test</p>
       </div>
     );
   }

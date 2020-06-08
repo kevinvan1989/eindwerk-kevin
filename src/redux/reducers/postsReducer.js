@@ -1,6 +1,27 @@
 const initialState = {
   current_page: 1,
-  posts: [],
+  posts: [{
+    body: "<p></p>",
+comments_count: 0,
+created_at: "2020-06-08 16:32:47",
+id: 767,
+likes_count: 0,
+title: "Well",
+updated_at: "2020-06-08 16:32:47",
+user: {
+  avatar: "undefinedparel@pot.com",
+created_at: "2020-06-08 16:23:03",
+email: "parel@pot.com",
+email_verified_at: null,
+favorite_color: "#9c27b0",
+first_name: "parel",
+id: 149,
+last_login_at: "2020-06-08 16:33:26",
+last_name: "pot",
+updated_at: "2020-06-08 16:33:26"
+}
+
+  }],
   postDetail: {},
   particularComment: "",
   // Init values to prevent destructure probs
