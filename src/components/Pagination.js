@@ -8,7 +8,6 @@ import { fetchPost } from '../redux/actions/postsActions'
   }
 
   render() {
-    console.log(this.props.newstate)
     return (
       <div>
         <button onClick={()=>this.getToPage(5)}>get to page</button>

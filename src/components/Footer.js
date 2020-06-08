@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 
 class Footer extends Component {
   render() {
-    // const date = moment();
-    // console.log(date)
-
     const {currentYear} = this.props
 
     return (

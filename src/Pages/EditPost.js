@@ -17,7 +17,6 @@ class EditPost extends Component {
         const {idPost: id} = this.props.match.params
         API.get(`/api/posts/${id}`).then(
             response => {
-                console.log(response)
                 this.setState({
                     title: response.data.title,
                     body: response.data.body,
@@ -28,13 +27,10 @@ class EditPost extends Component {
     }
 
     handleSubmitCreate = (values, postId) => {
-        console.log(values, postId)
         this.props.edit(values, this.props.match.params.idPost)
     }
 
     render() {
-        console.log('prps', this.props.match.params)
-        console.log(this.state)
         const {title, body} = this.state
 
         return (

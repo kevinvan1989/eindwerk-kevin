@@ -10,17 +10,10 @@ class Overview extends Component {
   componentDidMount() {
     this.props.getPosts(1);
     this.props.getUser();
-    console.log("props in overview", this.props);
-  }
-
-  componentDidUpdate(prevProps, props){
-    console.log(prevProps, this.props)
   }
 
   render() {
     const { postData, userAuthorized } = this.props;
-    // console.log('postData in overview', postData.last_page, postData.current_page)
-    console.log("postdata in overview", postData);
 
     if(postData.length !== 0){
       return (<div>

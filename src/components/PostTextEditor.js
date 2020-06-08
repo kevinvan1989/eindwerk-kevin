@@ -8,7 +8,6 @@ import Button from "./Button";
 export default class PostTextEditor extends Component {
   render() {
     const { setFieldValue, values } = this.props;
-    console.log(this.props);
     return (
       <div>
         <Form>

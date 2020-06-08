@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 export default class BlogpostProfile extends Component {
   render() {
-    console.log("blogpostprofile", this.props);
     const { title, body, created_at } = this.props.blogPost;
     return (
       <div className="card text-center mb-2">

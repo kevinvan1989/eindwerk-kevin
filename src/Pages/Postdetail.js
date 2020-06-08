@@ -22,30 +22,22 @@ class Postdetail extends Component {
 
   componentDidMount() {
     this.props.getUser();
-    console.log(this.props.match.params.id);
     const { id } = this.props.match.params;
 
     API.get(`/api/posts/${id}`).then((res) => {
-      console.log("detail", res.data);
       this.setState({ post: res.data, comments: res.data.comments });
     });
   }
 
-  componentDidUpdate(prevState) {
-    console.log("updated!!!");
-    console.log(prevState);
-  }
-
-  addCommentToState = comment => {
-    const commentList = this.state.comments
-    commentList.push(comment)
+  addCommentToState = (comment) => {
+    const commentList = this.state.comments;
+    commentList.push(comment);
     this.setState({
-      comments: commentList
-    })
-  }
+      comments: commentList,
+    });
+  };
 
   render() {
-    console.log("map props", this.props);
     const {
       id: postId,
       title,
@@ -54,8 +46,6 @@ class Postdetail extends Component {
       updated_at,
       comments,
     } = this.state.post;
-
-    console.log(this.state.comments);
 
     const {
       id: userId,
@@ -67,8 +57,6 @@ class Postdetail extends Component {
     } = this.state.post.user;
 
     const { isLoggedIn } = this.props;
-
-    console.log("post detail props", "postID", postId, "userID", userId);
 
     return (
       <div className="grid-container grid-container--2-col">
@@ -92,7 +80,12 @@ class Postdetail extends Component {
           {/* Check if user is logged in:
                 if so: show text area for comment
                 if not: hide text area for comment */}
-          {isLoggedIn.user !== "not set" && <CreateComment postId={postId} addComment={this.addCommentToState} />}
+          {isLoggedIn.user !== "not set" && (
+            <CreateComment
+              postId={postId}
+              addComment={this.addCommentToState}
+            />
+          )}
 
           {/* Flex item right with image and name ;*/}
           <aside className="m-auto text-center">
@@ -118,7 +111,7 @@ class Postdetail extends Component {
 
 const mapStateToProps = (state) => ({
   isLoggedIn: state.auth,
-  posts: state.post
+  posts: state.post,
 });
 
 const mapDispatchToProps = (dispatch) => ({

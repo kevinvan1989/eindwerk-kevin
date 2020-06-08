@@ -17,12 +17,11 @@ export default class Register extends Component {
       favorite_color: REGISTER_favColor
     }
 
-    console.log("console after subm", userData);
 
     // Submit all data to create new user ...
     // No tokens here
     API.post("api/users", userData).then((response) => {
-      console.log('post response', response);
+      console.log(response)
     })
     
   }

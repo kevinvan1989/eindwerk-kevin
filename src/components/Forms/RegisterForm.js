@@ -5,7 +5,6 @@ import { ChromePicker } from 'react-color'
 
 export default class RegisterForm extends Component {
   render() {
-    console.log('props in Reg Form', this.props.setFieldValue)
     const {setFieldValue, values} = this.props
     return (
       <div>

@@ -13,14 +13,11 @@ class Login extends Component {
   clearInput = () => {
     const inputEl = document.querySelectorAll(".inputField");
     inputEl.forEach((el) => {
-      // console.log(el);
       el.value = ''
     });
-    // console.log(inputEl);
   };
 
   handleLogin = (values) => {
-    console.log('values', values)
     
     API.post('oauth/token', {
             'grant_type': 'password',
@@ -30,7 +27,6 @@ class Login extends Component {
             "password": values.LOGIN_password
     }).then(response => {
       window.localStorage.setItem('_DEMO_TOKEN', response.data.access_token)
-      console.log('post',response.data.access_token)
 
       // Object.assign(API.defaults, {
       //   headers: { authorization: 'Bearer' + response.data.access_token}
@@ -40,7 +36,6 @@ class Login extends Component {
           "Bearer " + response.data.access_token;
           
       API.get("/api/posts").then((response) => {
-        console.log(response);
       });
 
       // De header wordt ingesteld hierboven. Daarna kunnen de gegevens worden opgehaald
@@ -53,7 +48,6 @@ class Login extends Component {
   };
 
   render() {
-    console.log('props uit login', this.props)
     return (
       <div>
         <Formik

@@ -33,9 +33,6 @@ class Blogpost extends Component {
 
     const {auth} = this.props
 
-    console.log('auth in blogpost', auth)
-    console.log(this.props)
-
     return (
       <div className="blogpost m-2">
         <article>

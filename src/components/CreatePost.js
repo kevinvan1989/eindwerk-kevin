@@ -7,13 +7,11 @@ import { addNewPost } from "../redux/actions/postsActions";
 
  class CreatePost extends Component {
   handleSubmitCreate = values => {
-    console.log(values)
     this.props.createPost(values)
 
   }
 
   render() {
-    console.log('props uit create', this.props)
     return (
       <div>
         <Formik

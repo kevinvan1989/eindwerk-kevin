@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { ErrorMessage, Form } from "formik"
+import { Form } from "formik"
 import Formgroup from "./Formgroup"
 
 
 export default class LoginForm extends Component {
   render() {
-    console.log('login form props', this.props)
     return (
       <div>
         <Form>
